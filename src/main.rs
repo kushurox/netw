@@ -72,6 +72,7 @@ async fn main() -> std::io::Result<()> {
     
     let listner = TcpListener::bind("127.0.0.1:2449").await?;
 
+    // to receive messages from individual client and broadcast it to everyone else
     let t1 = async {
         let broadcast= broadcast.clone();
         loop {
@@ -83,6 +84,7 @@ async fn main() -> std::io::Result<()> {
         }
     };
 
+    // to listen for incoming requests
     let t2 = async{
         let broadcast = broadcast.clone();
         loop {
